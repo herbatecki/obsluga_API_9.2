@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Biblioteka</title>
+</head>
+<body>
+  <p>Wybierz walutę oraz jej ilość do kupienia: </p> 
+  <form method='post' action='/'>
+    <label for='currency'>Wybierz walutę</label>
+    <select name="currency" id="currency">
+    <option value="USD">dolar</option>
+    <option value="AUD">dolar australisjki</option>
+    <option value="EUR">euro</option>
+    <option value="HUF">forint</option>
+    <option value="CHF">frank szwajcarski</option>
+    <option value="GBP">funt szterling</option>
+    <option value="JPY">jen</option>
+    <option value="CZK">korona czeska</option>
+    <option value="DKK">korona duńska</option>
+    <option value="NOK">korona norweska</option>
+    <option value="SEK">korona szwedzka</option>
+    <option value="XDR">rozrachunkowa jednostka monetarna</option>
+    </select><br>
+    <label for='amount'>Ilość waluty: </label>
+      <input type='number' id='amount' name='amount'><br>
+      <br>
+  </form>
+</body>
