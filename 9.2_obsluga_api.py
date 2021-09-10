@@ -40,32 +40,39 @@ with open('/home/kacki/Documents/kodilla/virtual_flask/tasks/modul_9/9.2_obsluga
   currency_writer.writerow({'currency': 'korona szwedzka', 'code': 'SEK', 'bid': 0.4403, 'ask': 0.4491})
   currency_writer.writerow({'currency': 'SDR (MFW)', 'code': 'XDR', 'bid': 5.3836, 'ask': 5.4924})
 
-from flask import Flask, render_template, request
-
-""""app=Flask(__name__)
-
-@app.route('/', methods = ['GET', 'POST'])
-def calculating_currencies():
-    if request.method == 'POST':
-        currency_data= request.form"""
 
 import pandas as pd
 df = pd.read_csv('/home/kacki/Documents/kodilla/virtual_flask/tasks/modul_9/9.2_obsluga_API/currency_list.csv', delimiter=';')
 print(df)
 print(type(df))
-print(df['code'][0])
+print(df)
+print(type(df))
+print(df['code'])
 eur = df[df.code=='EUR']['ask']
 print(eur)
 
-"""Marcin Czelej21:37
-df = pd.read_csv("...")
-eur = df[df.name == 'euro']
-Marcin Czelej21:39
-import pandas as pd
+choice = 'USD'
+res= df[df.code == choice]['ask']
+print(res)
+test = list(res)
+print(test[0])
 
-df = pd.read_csv(NAZWA_PLIKU.csv)
+from flask import Flask, render_template, request
 
-df[df.NAZWA_KOLUMNY_Z_NAZWA_WALUTY=='euro']['NAZWA_KOLUMNY_Z_WARTOSCIAMI']
-str.split(';')[2]
-Marcin Czelej21:42
-dict_1["dolar_amerykancji"]"""
+app=Flask(__name__)
+
+@app.route('/', methods = ['GET', 'POST'])
+def calculating_currencies():
+    if request.method == 'POST':
+        currency_data= request.form
+        currency_choice = currency_data.get('value')
+        amount_choice = currency_data.get('amount')
+        compar = df[df.code == currency_choice]['ask']
+        value = list(compar)
+        element = value[0]
+        return element*amount_choice
+      
+    return render_template('calculator.html')
+
+if __name__=='__main__':
+    app.run(debug=True)
